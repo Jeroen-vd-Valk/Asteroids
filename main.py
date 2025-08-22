@@ -1,5 +1,5 @@
 import pygame
-from constants import SCREEN_WIDTH, SCREEN_HEIGHT, ASTEROID_MIN_RADIUS, ASTEROID_KINDS, ASTEROID_SPAWN_RATE
+from constants import SCREEN_WIDTH, SCREEN_HEIGHT
 from player import Player
 from shot import Shot
 from asteroid import Asteroid
@@ -46,6 +46,13 @@ def main():
             if (asteroid.collision_checker(player)):
                 print("Game over!")
                 exit()
+
+        for asteroid in asteroids:
+            for bullet in shots:
+                if(asteroid.collision_checker(bullet)):
+                    asteroid.split()
+                    bullet.kill()
+
 
         pygame.display.flip()       # flips the screen
         dt = time.tick(60) / 1000   # delays to 60 fps
