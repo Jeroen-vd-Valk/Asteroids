@@ -39,6 +39,11 @@ def main():
         for item in drawable:
             item.draw(screen)         # renders the player's model
 
+        for asteroid in asteroids:
+            if (asteroid.collision_checker(player)):
+                print("Game over!")
+                exit()
+
         pygame.display.flip()       # flips the screen
         dt = time.tick(60) / 1000   # delays to 60 fps
 
